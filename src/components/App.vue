@@ -4,35 +4,32 @@
       <ul class="nav">
         <li>
           <!-- 可以添加路由激活事件类型 event='mouseover'-->
-          <router-link :to="index" extra active-class='router-active' event='mouseover'>home</router-link>
+          <router-link to="/home" extra active-class='router-active'>home</router-link>
         </li>
         <li>
-          <router-link :to="document" event='mouseover'>document</router-link>
+          <router-link :to="{path: '/document#abc'}">document</router-link>
         </li>
         <li>
-          <router-link :to="about" event='mouseover'>about</router-link>
+          <router-link to="/about">about</router-link>
+        </li>
+        <li>
+          <router-link to="/news">news</router-link>
         </li>
       </ul>
     </div>
-    <router-view class="center"></router-view>
+    <router-view name="silder"></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
-  data () {
-    return {
-      index: '/home',
-      document: '/document',
-      about: '/about'
-    }
-  }
 }
 </script>
 
 <style>
 #app{
+  height: 4000px;
   font-size: 18px;
 }
 

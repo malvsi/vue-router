@@ -7,6 +7,11 @@ import Study from '@/components/subComponents/Study'
 import Work from '@/components/subComponents/Work'
 import Hobby from '@/components/subComponents/Hobby'
 import Error from '@/components/Error'
+import Silder from '@/components/Silder'
+import News from '@/components/News'
+import New1 from '@/components/subComponents/new1'
+import New2 from '@/components/subComponents/new2'
+import New3 from '@/components/subComponents/new3'
 
 Vue.use(VueRouter)
 
@@ -15,25 +20,54 @@ Vue.use(VueRouter)
     2: 显示404页面 {path: '*', component: Error}
 */
 let router = new VueRouter({
-  mode: 'history',
+  linkActiveClass: 'router-active',
+  mode: 'history', // 路由模式
+  scrollBehavior (to, from, savePosition) { // 保存上次滚动所在的位置
+    /* console.log(to) //  目标路由
+    console.log(from) // 涞源路由
+    console.log(savePosition) // 上一个路由停留的位置对象 */
+
+    /* if (savePosition) {
+      return savePosition
+    } else {
+      return {x: 0, y: 0}
+    } */
+
+    if (to.hash) { // to.hash表示锚点的位置，与routerLink的参数有关
+      return {
+        selector: to.hash
+      }
+    }
+  },
   routes: [
     {path: '/', component: Home},
     { path: '/home', component: Home },
-    { path: '/document', component: Document },
+    { path: '/document',
+      components: {
+        default: Document,
+        silder: Silder
+      }},
     {
       path: '/about',
       component: About,
       children: [
-        {path: '/', component: Study}, // 默认子路由
+        // {path: '/', component: Study}, // 默认子路由
         { path: '/study', name: 'Study', component: Study },
         { path: '/work', name: 'Work', component: Work },
         { path: '/hobby', name: 'Hobby', component: Hobby }
       ]
     },
+    {path: '/news/:id?',
+      component: News,
+      children: [
+        {path: '/news/new/1', component: New1},
+        {path: '/news/new/2', component: New2},
+        {path: '/news/new/3', component: New3},
+      ]
+    },
     {path: '*', component: Error} // 如果进入/输入错误的路径，那么会显示Error这个组建
     // {path: '*', redirect: '/home'}
-  ],
-  linkActiveClass: 'router-active'
+  ]
 })
 
 export default router
