@@ -4,7 +4,7 @@
       <ul class="nav">
         <li>
           <!-- 可以添加路由激活事件类型 event='mouseover'-->
-          <router-link :to="index" active-class='router-active' event='mouseover'>home</router-link>
+          <router-link :to="index" extra active-class='router-active' event='mouseover'>home</router-link>
         </li>
         <li>
           <router-link :to="document" event='mouseover'>document</router-link>

@@ -1,8 +1,8 @@
 <template>
     <div>
-        <router-link to='/about/study'>Study</router-link>
-        <router-link to='/about/work'>Work</router-link>
-        <router-link to='/about/hobby'>Hobby</router-link>
+        <router-link :to='{name: "Study"}' exact event='mouseover'>Study</router-link>
+        <router-link :to='{name: "Work"}' event='mouseover'>Work</router-link>
+        <router-link :to='{name: "Hobby"}' event='mouseover'>Hobby</router-link>
 
         <router-view></router-view>
     </div>

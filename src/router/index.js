@@ -17,15 +17,17 @@ Vue.use(VueRouter)
 let router = new VueRouter({
   mode: 'history',
   routes: [
+    {path: '/', component: Home},
     { path: '/home', component: Home },
     { path: '/document', component: Document },
     {
       path: '/about',
       component: About,
       children: [
-        { path: '/about/study', component: Study },
-        { path: '/about/work', component: Work },
-        { path: '/about/hobby', component: Hobby }
+        {path: '/', component: Study}, // 默认子路由
+        { path: '/study', name: 'Study', component: Study },
+        { path: '/work', name: 'Work', component: Work },
+        { path: '/hobby', name: 'Hobby', component: Hobby }
       ]
     },
     {path: '*', component: Error} // 如果进入/输入错误的路径，那么会显示Error这个组建
