@@ -6,7 +6,7 @@
         style="padding: 0 10px;"
         v-for="item in newslist"
         :key="item.name"
-        :to="'/news/' + item.tip + '/' + item.id"
+        :to="{path: '/news/' + item.tip + '/' + item.id, query: {flow: item.flow}}"
       >{{item.name}}</router-link>
     </ul>
 
@@ -14,6 +14,15 @@
       <p>姓名：{{ userInfo.name }}</p>
       <p>Id: {{ userInfo.id }}</p>
       <p>会员类型: {{ userInfo.tip }}</p>
+    </div>
+
+    <div class="info-list" v-if='userInfo.id'>
+      <router-link exact :to="{path: '',query: {flow: userInfo.flow}}">他的关注</router-link>
+      <router-link exact :to="{path: '',query: {share: userInfo.share}}">他的分享</router-link>
+    </div>
+
+    <div>
+      {{ $route.query.flow||$route.query.share }}
     </div>
   </div>
 </template>
@@ -23,9 +32,9 @@ export default {
   data () {
     return {
       newslist: [
-        { name: 'li', id: '1', tip: 'common' },
-        { name: 'jun', id: '2', tip: 'vip' },
-        { name: 'jian', id: '3', tip: 'svip' }
+        { name: 'li', id: '1', tip: 'common', flow: 'true', share: '3' },
+        { name: 'jun', id: '2', tip: 'vip', flow: 'false', share: '4' },
+        { name: 'jian', id: '3', tip: 'svip', flow: 'true', share: '100' }
       ],
       userInfo: {}
     }

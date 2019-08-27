@@ -17,8 +17,10 @@
         </li>
       </ul>
     </div>
-    <router-view name="silder"></router-view>
+    <transition name='left'>
+    <!-- <router-view name="silder"></router-view> -->
     <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -31,6 +33,11 @@ export default {
 #app{
   height: 4000px;
   font-size: 18px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 170px;
 }
 
 li{
@@ -41,5 +48,17 @@ li{
 
 .router-active{
   background-color: pink;
+}
+
+.left-enter{
+  transform: translateX(100%);
+}
+
+.left-enter-active,.left-leave-active{
+  transition: 1s;
+}
+
+.left-leave{
+  transform: translateX(-100%);
 }
 </style>
