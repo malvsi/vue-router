@@ -38,8 +38,15 @@ let router = new VueRouter({
   },
   routes: [
     {path: '/', component: Home},
-    { path: '/home', component: Home },
+    { path: '/home',
+      component: Home,
+      meta: {
+        index: 0
+      } },
     { path: '/document',
+      meta: {
+        index: 1
+      },
       components: {
         default: Document,
         silder: Silder
@@ -48,14 +55,22 @@ let router = new VueRouter({
       path: '/about',
       component: About,
       children: [
-        {path: '', name: 'Study', component: Study}, // 默认子路由
+        {path: '',
+          name: 'Study',
+          component: Study,
+          meta: {
+            index: 2
+          }}, // 默认子路由
         // { path: '/study', name: 'Study', component: Study },
         { path: '/work', name: 'Work', component: Work },
         { path: '/hobby', name: 'Hobby', component: Hobby }
       ]
     },
     { path: '/news/:tip?/:id?',
-      component: News
+      component: News,
+      meta: {
+        index: 3
+      }
     },
     {path: '*', component: Error} // 如果进入/输入错误的路径，那么会显示Error这个组建
     // {path: '*', redirect: '/home'}

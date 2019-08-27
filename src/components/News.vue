@@ -16,14 +16,12 @@
       <p>会员类型: {{ userInfo.tip }}</p>
     </div>
 
-    <div class="info-list" v-if='userInfo.id'>
+    <div class="info-list" v-if="userInfo.id">
       <router-link exact :to="{path: '',query: {flow: userInfo.flow}}">他的关注</router-link>
       <router-link exact :to="{path: '',query: {share: userInfo.share}}">他的分享</router-link>
     </div>
 
-    <div>
-      {{ $route.query.flow||$route.query.share }}
-    </div>
+    <div>{{ $route.query.flow||$route.query.share }}</div>
   </div>
 </template>
 
