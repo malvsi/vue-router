@@ -57,12 +57,12 @@ let router = new VueRouter({
         { path: '/hobby', name: 'Hobby', component: Hobby }
       ]
     },
-    {path: '/news/:id?',
+    {path: '/news',
       component: News,
       children: [
         {path: '/news/new/1', component: New1},
         {path: '/news/new/2', component: New2},
-        {path: '/news/new/3', component: New3},
+        {path: '/news/new/3', component: New3}
       ]
     },
     {path: '*', component: Error} // 如果进入/输入错误的路径，那么会显示Error这个组建

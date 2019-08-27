@@ -10,14 +10,14 @@
 
 <script>
 export default {
-    data() {
+    data () {
         return {
             newslist: [
                 {name: 'li', id: '1'},
                 {name: 'jun', id: '2'},
                 {name: 'jian', id: '3'}
             ]
-        }
+        }    
     }
 }
 </script>
