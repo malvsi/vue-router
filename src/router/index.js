@@ -9,9 +9,6 @@ import Hobby from '@/components/subComponents/Hobby'
 import Error from '@/components/Error'
 import Silder from '@/components/Silder'
 import News from '@/components/News'
-import New1 from '@/components/subComponents/new1'
-import New2 from '@/components/subComponents/new2'
-import New3 from '@/components/subComponents/new3'
 
 Vue.use(VueRouter)
 
@@ -51,19 +48,14 @@ let router = new VueRouter({
       path: '/about',
       component: About,
       children: [
-        // {path: '/', component: Study}, // 默认子路由
-        { path: '/study', name: 'Study', component: Study },
+        {path: '', name: 'Study', component: Study}, // 默认子路由
+        // { path: '/study', name: 'Study', component: Study },
         { path: '/work', name: 'Work', component: Work },
         { path: '/hobby', name: 'Hobby', component: Hobby }
       ]
     },
-    {path: '/news',
-      component: News,
-      children: [
-        {path: '/news/new/1', component: New1},
-        {path: '/news/new/2', component: New2},
-        {path: '/news/new/3', component: New3}
-      ]
+    { path: '/news/:tip?/:id?',
+      component: News
     },
     {path: '*', component: Error} // 如果进入/输入错误的路径，那么会显示Error这个组建
     // {path: '*', redirect: '/home'}
