@@ -6,9 +6,10 @@ import About from '@/components/About'
 import Study from '@/components/subComponents/Study'
 import Work from '@/components/subComponents/Work'
 import Hobby from '@/components/subComponents/Hobby'
-import Error from '@/components/Error'
+// import Error from '@/components/Error'
 import Silder from '@/components/Silder'
 import News from '@/components/News'
+import Login from '@/components/Login'
 
 Vue.use(VueRouter)
 
@@ -41,11 +42,15 @@ let router = new VueRouter({
     { path: '/home',
       component: Home,
       meta: {
-        index: 0
+        index: 0,
+        login: false,
+        title: 'vue-cli home'
       } },
+    {path: '/login', component: Login},
     { path: '/document',
       meta: {
-        index: 1
+        index: 1,
+        title: 'vue-cli document'
       },
       components: {
         default: Document,
@@ -59,7 +64,8 @@ let router = new VueRouter({
           name: 'Study',
           component: Study,
           meta: {
-            index: 2
+            index: 2,
+            title: 'vue-cli about'
           }}, // 默认子路由
         // { path: '/study', name: 'Study', component: Study },
         { path: '/work', name: 'Work', component: Work },
@@ -68,13 +74,38 @@ let router = new VueRouter({
     },
     { path: '/news/:tip?/:id?',
       component: News,
+      // 局部钩子函数
+      beforeEnter (to, from, next) {
+        console.log('sss')
+        next()
+      },
       meta: {
-        index: 3
+        index: 3,
+        title: 'vue-cli news'
       }
-    },
-    {path: '*', component: Error} // 如果进入/输入错误的路径，那么会显示Error这个组建
+    }
+    // {path: '*', component: Error} // 如果进入/输入错误的路径，那么会显示Error这个组建
     // {path: '*', redirect: '/home'}
   ]
 })
+
+// 全局钩子函数：导航进入之前的钩子函数
+/* router.beforeEach((to, from, next) => { // 导航钩子函数，提供一个拦截器
+  console.log('beforeEach..')
+  if (to.meta.login) { // 如果login为true，则需要登陆才能继续浏览
+    next('/login')
+  } else {
+    next()
+  }
+}) */
+
+// 全局钩子：导航进入之后执行的钩子函数
+/* router.afterEach((to, from) => { // 导航进入执行这个钩子函数
+  if (to.meta.title) {
+    window.document.title = to.meta.title
+  } else {
+    window.document.title = 'vue-cli'
+  }
+}) */
 
 export default router

@@ -1,3 +1,7 @@
+# 知识点
+    ## 全局钩子函数
+        1: 
+
 # vue-cli
 
 > A Vue.js project
