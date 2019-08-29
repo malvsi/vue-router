@@ -76,11 +76,15 @@ let router = new VueRouter({
       component: News,
       // 局部钩子函数
       beforeEnter (to, from, next) {
-        console.log('sss')
-        next()
+        if (to.meta.login) {
+          next('/login')
+        } else {
+          next()
+        }
       },
       meta: {
         index: 3,
+        login: true,
         title: 'vue-cli news'
       }
     }

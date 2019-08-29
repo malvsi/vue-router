@@ -1,6 +1,33 @@
 # 知识点
-    ## 全局钩子函数
-        1: 
+> 路由钩子函数
+``` bash
+    # 1: 全局钩子函数
+        router.beforeEach((to, from, next)=> {
+            <!-- 拦截器 -->
+        })
+    # 2: 局部钩子函数
+        {
+            path: '/document',
+            meta: {
+                login: true
+            },
+            beforeEneter(to, from, next) {
+                if(to.meta.login) {
+                    next('/login')
+                } else {
+                    next()
+                }
+            },
+            component: document
+        }
+    # 3: 组建内的钩子函数   beforeRouteUpdate和beforeRouterLeave
+        beforeRouteEnter(to, from, next) {
+            next( (vm)=> {
+                <!-- vm表示当前Vue实例对象 -->
+            })
+        }
+```        
+
 
 # vue-cli
 
